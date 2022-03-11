@@ -3,7 +3,6 @@ package hello.itemservice.web.basic;
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +31,4 @@ public class BasicController {
         itemRepository.save(new Item("ItemA",10000, 10));
         itemRepository.save(new Item("ItemB",20000, 20));
     }
-
-
 }

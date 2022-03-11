@@ -9,10 +9,11 @@ import java.util.Map;
 
 @Repository
 public class ItemRepository {
-    private static final Map<Long, Item> store = new HashMap<>();
-    private static long sequence = 0L;
+    private static final Map<Long, Item> store = new HashMap<>(); //static 사용
+    private static long sequence = 0L; //static 사용
 
     public Item save(Item item) {
+        item.setId(++sequence);
         store.put(item.getId(), item);
         return item;
     }

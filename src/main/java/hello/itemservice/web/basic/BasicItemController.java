@@ -72,7 +72,7 @@ public class BasicItemController {
     }
 
     @PostMapping("/add")
-    public String addItemV3(Item item) {
+    public String addItemV4(Item item) {
 
         itemRepository.save(item);
 

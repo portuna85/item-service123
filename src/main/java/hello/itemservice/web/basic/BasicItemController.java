@@ -4,6 +4,7 @@ import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +19,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BasicItemController {
 
+    @Autowired
     private final ItemRepository itemRepository;
 
     @GetMapping
     public String items(Model model) {
-        List<Item> items = itemRepository.findAll();
 
+        List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
-        return "basic/items";
+
+        return "/basic/items";
     }
 
     @GetMapping("/{itemId}")
@@ -40,7 +43,7 @@ public class BasicItemController {
         return "basic/addForm";
     }
 
-    // @PostMapping("/add")
+    @PostMapping("/add")
     public String addItemV1(@RequestParam String itemName,
                             @RequestParam int price,
                             @RequestParam Integer quantity,
@@ -84,7 +87,7 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("/add")
+    // @PostMapping("/add")
     public String addItemV5(Item item) {
         itemRepository.save(item);
         return "redirect:/basic/items/" + item.getId();
@@ -117,7 +120,6 @@ public class BasicItemController {
      */
     @PostConstruct
     public void init() {
-
         itemRepository.save(new Item("ItemA", 10000, 10));
         itemRepository.save(new Item("ItemB", 20000, 20));
     }

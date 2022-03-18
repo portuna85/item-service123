@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
+import java.util.Collection;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +27,8 @@ public class BasicItemController {
     public String items(Model model) {
 
         List<Item> items = itemRepository.findAll();
-        model.addAttribute("items", items);
+
+        model.addAttribute("itemList", items);
 
         return "/basic/items";
     }
@@ -43,7 +45,7 @@ public class BasicItemController {
         return "basic/addForm";
     }
 
-    @PostMapping("/add")
+    // @PostMapping("/add")
     public String addItemV1(@RequestParam String itemName,
                             @RequestParam int price,
                             @RequestParam Integer quantity,
@@ -79,7 +81,7 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    // @PostMapping("/add")
+    @PostMapping("/add")
     public String addItemV4(Item item) {
 
         itemRepository.save(item);

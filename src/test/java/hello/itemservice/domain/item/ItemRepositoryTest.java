@@ -3,6 +3,7 @@ package hello.itemservice.domain.item;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +32,7 @@ public class ItemRepositoryTest {
         itemRepository.save(item1);
         itemRepository.save(item2);
         //when
-        List<Item> result = itemRepository.findAll();
+        Collection<Item> result = itemRepository.findAll();
         //then
         assertThat(result.size()).isEqualTo(2);
         assertThat(result).contains(item1, item2);
